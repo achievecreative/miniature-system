@@ -23,13 +23,13 @@ export const authOptions = {
 
     async session({ session, token, user }: any) {
       const jwtToken = token as JWTToken;
-      //console.log("🚀 Session", session);
+      console.log("🚀 Session", session);
       return { ...session, accessToken: jwtToken.accessToken };
     },
     async jwt({ token, user, account, profile, isNewUser }: any) {
       const azureAccount: AzureAccount = account;
       if (account) {
-        //console.log("🚀 jwt", token, user, account, profile);
+        console.log("🚀 jwt", token, user, account, profile);
         return {
           ...token,
           accessToken: {
@@ -48,9 +48,11 @@ export const authOptions = {
       }
 
       const jwtToken = token as JWTToken;
+      
       //check expired
       const expired = jwtToken.accessToken.expired * 1000 < Date.now();
       if (expired) {
+        console.log('🚀 token expired, refresh')
         //todo: refresh token
       }
 

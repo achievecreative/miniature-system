@@ -16,6 +16,7 @@ export async function middleware(req: NextRequest) {
   const options: NextAuthMiddlewareOptions = {
     callbacks: {
       authorized: async ({ token, req }) => {
+        console.log("🚀 middleware - authorized", token);
         const jwtToken = token as JWTToken;
         if (
           jwtToken?.accessToken?.expired &&
